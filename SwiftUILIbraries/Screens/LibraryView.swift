@@ -11,14 +11,30 @@ struct LibraryView: View {
     @Environment(LibraryDataSource.self) private var libraryDataSource
     @State private var searchText = ""
     
+    var libraries: [Library] {
+        libraryDataSource.libraries.filter {
+            searchText.count == 0 ? true : $0.name.lowercased().contains(searchText.lowercased())
+        }
+    }
+    
+    var sectionTitles: [String] {
+        let firstLetters = libraries.map { $0.name.prefix(1) }
+        return Array(Set(firstLetters)).map { String($0) }.sorted()
+    }
+    
     var body: some View {
         NavigationStack {
             List {
-                ForEach(libraryDataSource.libraries) { library in
-                    NavigationLink {
-                        
-                    } label: {
-                        Text(library.name)
+                ForEach(sectionTitles, id: \.self) { sectionTitle in
+                    Section(header: Text(sectionTitle)) {
+                        let sectionLibraries = libraries.filter { $0.name.hasPrefix(sectionTitle) }.sorted { $0.name < $1.name }
+                        ForEach(sectionLibraries) { library in
+                            NavigationLink {
+                                
+                            } label: {
+                                Text(library.name)
+                            }
+                        }
                     }
                 }
             }

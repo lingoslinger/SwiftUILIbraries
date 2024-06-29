@@ -1,5 +1,5 @@
 //
-//  NewLibraryDataSource.swift
+//  LibraryDataSource.swift
 //  SwiftUILibraries
 //
 //  Created by Allan Evans on 6/29/24.
@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Observation
 
 @Observable
 class LibraryDataSource {
