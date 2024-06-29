@@ -30,7 +30,7 @@ struct LibraryView: View {
                         let sectionLibraries = libraries.filter { $0.name.hasPrefix(sectionTitle) }.sorted { $0.name < $1.name }
                         ForEach(sectionLibraries) { library in
                             NavigationLink {
-                                
+                                LibraryDetailView(library: library)
                             } label: {
                                 Text(library.name)
                             }
@@ -54,5 +54,8 @@ struct LibraryView: View {
 }
 
 #Preview {
-    LibraryView()
+    NavigationStack {
+        LibraryView()
+            .environment(LibraryDataSource(webService: WebService()))
+    }
 }
