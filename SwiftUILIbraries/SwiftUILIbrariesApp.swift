@@ -11,7 +11,9 @@ import SwiftUI
 struct SwiftUILIbrariesApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                LibraryView()
+            }.environment(LibraryDataSource(webService: WebService()))
         }
     }
 }

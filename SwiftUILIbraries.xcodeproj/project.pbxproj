@@ -8,17 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		9D32FDB82C308FD300BDD100 /* SwiftUILIbrariesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDB72C308FD300BDD100 /* SwiftUILIbrariesApp.swift */; };
-		9D32FDBA2C308FD300BDD100 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDB92C308FD300BDD100 /* ContentView.swift */; };
+		9D32FDBA2C308FD300BDD100 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDB92C308FD300BDD100 /* LibraryView.swift */; };
 		9D32FDBC2C308FD400BDD100 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D32FDBB2C308FD400BDD100 /* Assets.xcassets */; };
 		9D32FDBF2C308FD400BDD100 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D32FDBE2C308FD400BDD100 /* Preview Assets.xcassets */; };
+		9D32FDC82C30904C00BDD100 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDC72C30904C00BDD100 /* Library.swift */; };
+		9D32FDCA2C30905B00BDD100 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDC92C30905B00BDD100 /* WebService.swift */; };
+		9D32FDCC2C30906400BDD100 /* LibraryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDCB2C30906400BDD100 /* LibraryDataSource.swift */; };
+		9D32FDCE2C30906D00BDD100 /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDCD2C30906D00BDD100 /* APIs.swift */; };
+		9D32FDD12C3090A100BDD100 /* PlistParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDD02C3090A100BDD100 /* PlistParser.swift */; };
+		9D32FDD42C309DE400BDD100 /* Webservice.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D32FDD32C309DE400BDD100 /* Webservice.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9D32FDB42C308FD300BDD100 /* SwiftUILIbraries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUILIbraries.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D32FDB72C308FD300BDD100 /* SwiftUILIbrariesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUILIbrariesApp.swift; sourceTree = "<group>"; };
-		9D32FDB92C308FD300BDD100 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9D32FDB92C308FD300BDD100 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		9D32FDBB2C308FD400BDD100 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D32FDBE2C308FD400BDD100 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9D32FDC72C30904C00BDD100 /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
+		9D32FDC92C30905B00BDD100 /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		9D32FDCB2C30906400BDD100 /* LibraryDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryDataSource.swift; sourceTree = "<group>"; };
+		9D32FDCD2C30906D00BDD100 /* APIs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
+		9D32FDD02C3090A100BDD100 /* PlistParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlistParser.swift; sourceTree = "<group>"; };
+		9D32FDD32C309DE400BDD100 /* Webservice.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Webservice.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +63,12 @@
 		9D32FDB62C308FD300BDD100 /* SwiftUILIbraries */ = {
 			isa = PBXGroup;
 			children = (
+				9D32FDCF2C30909500BDD100 /* Utilities */,
+				9D32FDC62C30903700BDD100 /* Models */,
+				9D32FDC52C308FE500BDD100 /* Data Source */,
+				9D32FDD22C309B7700BDD100 /* Screens */,
 				9D32FDB72C308FD300BDD100 /* SwiftUILIbrariesApp.swift */,
-				9D32FDB92C308FD300BDD100 /* ContentView.swift */,
+				9D32FDD32C309DE400BDD100 /* Webservice.plist */,
 				9D32FDBB2C308FD400BDD100 /* Assets.xcassets */,
 				9D32FDBD2C308FD400BDD100 /* Preview Content */,
 			);
@@ -65,6 +81,40 @@
 				9D32FDBE2C308FD400BDD100 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		9D32FDC52C308FE500BDD100 /* Data Source */ = {
+			isa = PBXGroup;
+			children = (
+				9D32FDC92C30905B00BDD100 /* WebService.swift */,
+				9D32FDCB2C30906400BDD100 /* LibraryDataSource.swift */,
+				9D32FDCD2C30906D00BDD100 /* APIs.swift */,
+			);
+			path = "Data Source";
+			sourceTree = "<group>";
+		};
+		9D32FDC62C30903700BDD100 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9D32FDC72C30904C00BDD100 /* Library.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9D32FDCF2C30909500BDD100 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9D32FDD02C3090A100BDD100 /* PlistParser.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		9D32FDD22C309B7700BDD100 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				9D32FDB92C308FD300BDD100 /* LibraryView.swift */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D32FDBF2C308FD400BDD100 /* Preview Assets.xcassets in Resources */,
+				9D32FDD42C309DE400BDD100 /* Webservice.plist in Resources */,
 				9D32FDBC2C308FD400BDD100 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,8 +188,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D32FDBA2C308FD300BDD100 /* ContentView.swift in Sources */,
+				9D32FDD12C3090A100BDD100 /* PlistParser.swift in Sources */,
+				9D32FDBA2C308FD300BDD100 /* LibraryView.swift in Sources */,
+				9D32FDCC2C30906400BDD100 /* LibraryDataSource.swift in Sources */,
 				9D32FDB82C308FD300BDD100 /* SwiftUILIbrariesApp.swift in Sources */,
+				9D32FDC82C30904C00BDD100 /* Library.swift in Sources */,
+				9D32FDCE2C30906D00BDD100 /* APIs.swift in Sources */,
+				9D32FDCA2C30905B00BDD100 /* WebService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
