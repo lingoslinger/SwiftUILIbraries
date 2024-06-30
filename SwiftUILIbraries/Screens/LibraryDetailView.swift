@@ -11,7 +11,7 @@ struct LibraryDetailView: View {
     let library: Library
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
 //                    LibraryImageView(library: library)
@@ -22,11 +22,10 @@ struct LibraryDetailView: View {
                     Text(library.hoursOfOperation?.formattedHours ?? "Hours not available")
                         .padding(.leading, 10)
                    
-                    LibraryAppleMapView(library: library)
+                    LibraryMapView(library: library)
                         .frame(height: 200, alignment: .top)
                         .onTapGesture {
-                            
-                            // openAppleMaps(for: library, startLoc: locationDataManager.userLocation)
+                             openAppleMaps(for: library)
                         }
                         .gesture(
                             LongPressGesture(minimumDuration: 1.0)
