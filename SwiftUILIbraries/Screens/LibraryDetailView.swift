@@ -14,7 +14,7 @@ struct LibraryDetailView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
-//                    LibraryImageView(library: library)
+                    LibraryImageView(library: library)
                     Text(library.address ?? "Address not available")
                         .padding(.leading, 10)
                     LibraryPhoneNumberView(library: library)
@@ -34,8 +34,6 @@ struct LibraryDetailView: View {
                                 }
                         )
                         .padding(.bottom, 10)
-                       
-                   
                 }
                 .padding(.bottom, 10)
             }
@@ -46,6 +44,9 @@ struct LibraryDetailView: View {
 
 struct LibraryDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        LibraryDetailView(library: previewLibrary)
+        NavigationStack {
+            LibraryDetailView(library: previewLibrary)
+                .environment(LibraryDataSource(webService: WebService()))
+        }
     }
 }

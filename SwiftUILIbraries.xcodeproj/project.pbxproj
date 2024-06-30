@@ -23,6 +23,8 @@
 		9D32FDDD2C30AABA00BDD100 /* LibraryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDDC2C30AABA00BDD100 /* LibraryDetailView.swift */; };
 		9D32FDDF2C30AB2500BDD100 /* String+LibraryHourFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDDE2C30AB2500BDD100 /* String+LibraryHourFormatting.swift */; };
 		9D32FDE22C30F08200BDD100 /* MapUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDE12C30F08200BDD100 /* MapUtilities.swift */; };
+		9D32FDE42C31A7AC00BDD100 /* LibraryImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDE32C31A7AC00BDD100 /* LibraryImageView.swift */; };
+		9D32FDE72C31A7EB00BDD100 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 9D32FDE62C31A7EB00BDD100 /* SwiftSoup */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,7 @@
 		9D32FDDC2C30AABA00BDD100 /* LibraryDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryDetailView.swift; sourceTree = "<group>"; };
 		9D32FDDE2C30AB2500BDD100 /* String+LibraryHourFormatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+LibraryHourFormatting.swift"; sourceTree = "<group>"; };
 		9D32FDE12C30F08200BDD100 /* MapUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapUtilities.swift; sourceTree = "<group>"; };
+		9D32FDE32C31A7AC00BDD100 /* LibraryImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D32FDE72C31A7EB00BDD100 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +141,7 @@
 		9D32FDD72C30AA8100BDD100 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9D32FDE32C31A7AC00BDD100 /* LibraryImageView.swift */,
 				9D32FDD82C30AA8C00BDD100 /* LibraryMapView.swift */,
 				9D32FDDA2C30AAA900BDD100 /* LibraryPhoneNumberView.swift */,
 			);
@@ -167,6 +172,9 @@
 			dependencies = (
 			);
 			name = SwiftUILIbraries;
+			packageProductDependencies = (
+				9D32FDE62C31A7EB00BDD100 /* SwiftSoup */,
+			);
 			productName = SwiftUILIbraries;
 			productReference = 9D32FDB42C308FD300BDD100 /* SwiftUILIbraries.app */;
 			productType = "com.apple.product-type.application";
@@ -195,6 +203,9 @@
 				Base,
 			);
 			mainGroup = 9D32FDAB2C308FD300BDD100;
+			packageReferences = (
+				9D32FDE52C31A7EB00BDD100 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = 9D32FDB52C308FD300BDD100 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -224,6 +235,7 @@
 			files = (
 				9D32FDD62C30A88500BDD100 /* PreviewData.swift in Sources */,
 				9D32FDD12C3090A100BDD100 /* PlistParser.swift in Sources */,
+				9D32FDE42C31A7AC00BDD100 /* LibraryImageView.swift in Sources */,
 				9D32FDBA2C308FD300BDD100 /* LibraryView.swift in Sources */,
 				9D32FDD92C30AA8C00BDD100 /* LibraryMapView.swift in Sources */,
 				9D32FDCC2C30906400BDD100 /* LibraryDataSource.swift in Sources */,
@@ -440,6 +452,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9D32FDE52C31A7EB00BDD100 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9D32FDE62C31A7EB00BDD100 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D32FDE52C31A7EB00BDD100 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9D32FDAC2C308FD300BDD100 /* Project object */;
 }

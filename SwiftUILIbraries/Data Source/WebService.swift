@@ -103,4 +103,28 @@ struct WebService {
             throw NetworkError.decodingError(error)
         }
     }
+    
+    // simpler methods to get data blob or html (string) data
+    func getData(for url: URL) async throws -> Data {
+        let (data, response) = try await URLSession.shared.data(from: url)
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw NetworkError.invalidResponse
+        }
+        guard (200..<300).contains(httpResponse.statusCode) else {
+            throw NetworkError.httpError(httpResponse.statusCode)
+        }
+        return data
+    }
+    
+    func getData(for urlString: String) async throws -> Data {
+        guard let url = URL(string: urlString) else { throw NetworkError.invalidURL }
+        let data = try await getData(for: url)
+        return data
+    }
+    
+    func getStringData(for urlString: String) async throws -> String {
+        let data = try await getData(for: urlString)
+        guard let returnString = String(data: data, encoding: .utf8) else { throw NetworkError.invalidResponse }
+        return returnString
+    }
 }
