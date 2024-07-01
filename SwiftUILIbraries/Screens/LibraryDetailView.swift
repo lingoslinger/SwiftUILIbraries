@@ -46,7 +46,7 @@ struct LibraryDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             LibraryDetailView(library: previewLibrary)
-                .environment(LibraryDataSource(webService: WebService()))
+                .environment(LibraryDataSource())
         }
     }
 }

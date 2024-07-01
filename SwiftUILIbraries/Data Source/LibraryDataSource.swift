@@ -7,19 +7,137 @@
 //
 
 import Foundation
+import CoreData
 
 @Observable
 class LibraryDataSource {
-    let webService: WebService
+    private let webService: WebService = WebService()
+    private let coreDataStack = CoreDataStack.shared
+    
+    private var cacheExpired: Bool {
+        let cacheLastSaved = UserDefaults.standard.double(forKey: "CacheDate")
+        if cacheLastSaved == 0 { return true } // for case when cache has not been saved yet
+        let today = Date().timeIntervalSince1970
+        let cacheTimeInterval =  24.0 * 60.0 * 60.0 // one day for now, eventually a settable preference
+        return (today - cacheLastSaved > cacheTimeInterval)
+    }
     
     var libraries: [Library] = []
     
-    init(webService: WebService) {
-        self.webService = webService
+    func getLibraries() async throws {
+        if cacheExpired{ deleteAllLibraries() }
+        let cachedLibraries = try loadCachedLibraries()
+        if !cachedLibraries.isEmpty {
+            libraries = cachedLibraries.map { mapEntityToModel($0) }
+        } else {
+            let resource = Resource(url: APIs.libraries.url, modelType: [Library].self)
+            libraries = try await webService.load(resource)
+            let timeInterval: Double = Date().timeIntervalSince1970
+            UserDefaults.standard.set(timeInterval, forKey: "CacheDate")
+            await saveToCoreData(libraries)
+        }
     }
     
-    func getLibraries() async throws {
-        let resource = Resource(url: APIs.libraries.url, modelType: [Library].self)
-        libraries = try await webService.load(resource)
+    private func loadCachedLibraries() throws -> [LibraryEntity] {
+        let request: NSFetchRequest<LibraryEntity> = LibraryEntity.fetchRequest()
+        return try coreDataStack.viewContext.fetch(request)
+    }
+    
+    private func saveToCoreData(_ libraries: [Library]) async {
+        let context = coreDataStack.viewContext
+        await context.perform {
+            for library in libraries {
+                let libraryEntity = LibraryEntity(context: context)
+                self.mapModelToEntity(from: library, to:libraryEntity)
+            }
+            do {
+                try context.save()
+            } catch {
+                print("Error saving to Core Data: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    private func deleteAllLibraries() {
+        let context = coreDataStack.viewContext
+        guard let entities = context.persistentStoreCoordinator?.managedObjectModel.entities else { return }
+        for entity in entities {
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: entity.name!)
+            do {
+                let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: request)
+                try context.execute(batchDeleteRequest)
+                context.reset()
+            } catch {
+                print("Error deleting \(String(describing: entity.name)), \(error.localizedDescription)")
+            }
+        }
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context after deletion, \(error.localizedDescription)")
+        }
+    }
+    
+    private func mapModelToEntity(from library: Library, to libraryEntity: LibraryEntity) {
+        libraryEntity.address = library.address
+        libraryEntity.city = library.city
+        libraryEntity.hoursOfOperation = library.hoursOfOperation
+        libraryEntity.location = locationToEntity(library.location ?? Location(latitude: "0.0", longitude: "0.0", needsRecoding: false))
+        libraryEntity.name = library.name
+        libraryEntity.phone = library.phone
+        libraryEntity.state = library.state
+        libraryEntity.website = websiteToEntity(library.website ?? Website(url: ""))
+        libraryEntity.zip = library.zip
+        libraryEntity.walkingDistance = library.walkingDistance
+        libraryEntity.photoData = library.photoData
+    }
+    
+    private func locationToEntity(_ location: Location) -> LocationEntity {
+        let locationEntity = LocationEntity(context: coreDataStack.viewContext)
+        locationEntity.lat = location.lat
+        locationEntity.lon = location.lon
+        locationEntity.needsRecoding = location.needsRecoding ?? false
+        return locationEntity
+    }
+    
+    private func websiteToEntity(_ website: Website) -> WebsiteEntity {
+        let websiteEntity = WebsiteEntity(context: coreDataStack.viewContext)
+        websiteEntity.url = website.url
+        return websiteEntity
+    }
+    
+    private func mapEntityToModel(_ libraryEntity: LibraryEntity) -> Library {
+        return Library(address: libraryEntity.address ?? "",
+                       city: libraryEntity.city ?? "",
+                       hoursOfOperation: libraryEntity.hoursOfOperation ?? "",
+                       location: locationFromEntity(libraryEntity),
+                       name: libraryEntity.name ?? "",
+                       phone: libraryEntity.phone ?? "",
+                       state: libraryEntity.state ?? "",
+                       website: websiteFromEntity(libraryEntity),
+                       zip: libraryEntity.zip ?? "",
+                       walkingDistance: libraryEntity.walkingDistance,
+                       photoData: libraryEntity.photoData ?? Data())
+    }
+    
+    private func locationFromEntity(_ libraryEntity: LibraryEntity) -> Location {
+        let latString = String(libraryEntity.location?.lat ?? 0.0)
+        let lonString = String(libraryEntity.location?.lon ?? 0.0)
+        let needsRecoding = libraryEntity.location?.needsRecoding
+        return Location(latitude: latString, longitude: lonString, needsRecoding: needsRecoding)
+    }
+    
+    private func websiteFromEntity(_ libraryEntity: LibraryEntity) -> Website {
+        return Website(url: libraryEntity.website?.url)
+    }
+}
+
+extension LibraryDataSource {
+    func libraryEntity(for library: Library) -> LibraryEntity? {
+        let context = CoreDataStack.shared.viewContext
+        let request: NSFetchRequest<LibraryEntity> = LibraryEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "name == %@", library.name)
+        let results = try? context.fetch(request)
+        return results?.first
     }
 }

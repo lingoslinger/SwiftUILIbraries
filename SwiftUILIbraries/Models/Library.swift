@@ -48,6 +48,21 @@ struct Library: Codable, Identifiable, Hashable {
         website = try values.decodeIfPresent(Website.self, forKey: .website)
         zip = try values.decodeIfPresent(String.self, forKey: .zip)
     }
+    
+    // need this for caching with Core Data
+    init(address: String, city: String, hoursOfOperation: String, location: Location, name: String, phone: String, state: String, website: Website, zip: String, walkingDistance: Double, photoData: Data) {
+        self.address = address
+        self.city = city
+        self.hoursOfOperation = hoursOfOperation
+        self.location = location
+        self.name = name
+        self.phone = phone
+        self.state = state
+        self.website = website
+        self.zip = zip
+        self.walkingDistance = walkingDistance
+        self.photoData = photoData
+    }
 }
 
 struct Location: Codable {

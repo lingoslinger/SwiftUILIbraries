@@ -54,11 +54,11 @@ extension LibraryImageView {
     private func loadLibraryImageData() async throws {
         let webService = WebService()
         
-//        let storedImageData = getStoredImageData(for: library)
-//        if storedImageData.count > 0 {
-//            libraryImageData = storedImageData
-//            return
-//        }
+        let storedImageData = getStoredImageData(for: library)
+        if storedImageData.count > 0 {
+            libraryImageData = storedImageData
+            return
+        }
 
         var imageURLString = ""
         guard let libraryURLString = library.website?.url else { fatalError("No library URL")}
@@ -72,29 +72,29 @@ extension LibraryImageView {
         }
         
         let imageData = try await webService.getData(for: imageURLString)
-//        saveStoredImageData(imageData, for: library)
+        saveStoredImageData(imageData, for: library)
         libraryImageData = imageData
     }
     
 }
 
-//extension LibraryImageView {
-//    func getStoredImageData(for library: Library) -> Data {
-//        guard let libEntity = libraryDataSource.libraryEntity(for: library) else { return Data() }
-//        return libEntity.photoData ?? Data()
-//    }
-//    
-//    func saveStoredImageData(_ imageData: Data, for library: Library) {
-//        guard let libEntity = libraryDataSource.libraryEntity(for: library) else { return }
-//        let context = CoreDataStack.shared.viewContext
-//        libEntity.photoData = imageData
-//        do {
-//            try context.save()
-//        } catch {
-//            print("Error saving to Core Data: \(error.localizedDescription)")
-//        }
-//    }
-//}
+extension LibraryImageView {
+    func getStoredImageData(for library: Library) -> Data {
+        guard let libEntity = libraryDataSource.libraryEntity(for: library) else { return Data() }
+        return libEntity.photoData ?? Data()
+    }
+    
+    func saveStoredImageData(_ imageData: Data, for library: Library) {
+        guard let libEntity = libraryDataSource.libraryEntity(for: library) else { return }
+        let context = CoreDataStack.shared.viewContext
+        libEntity.photoData = imageData
+        do {
+            try context.save()
+        } catch {
+            print("Error saving image to Core Data: \(error.localizedDescription)")
+        }
+    }
+}
 
 
 
@@ -102,7 +102,7 @@ extension LibraryImageView {
 #Preview {
     NavigationStack {
         LibraryImageView(library: previewLibrary)
-            .environment(LibraryDataSource(webService: WebService()))
+            .environment(LibraryDataSource())
     }
     
 }

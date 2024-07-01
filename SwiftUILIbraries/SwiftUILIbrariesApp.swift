@@ -13,7 +13,7 @@ struct SwiftUILIbrariesApp: App {
         WindowGroup {
             NavigationStack {
                 LibraryView()
-            }.environment(LibraryDataSource(webService: WebService()))
+            }.environment(LibraryDataSource())
         }
     }
 }

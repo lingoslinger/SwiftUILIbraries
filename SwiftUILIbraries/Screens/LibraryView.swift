@@ -56,6 +56,6 @@ struct LibraryView: View {
 #Preview {
     NavigationStack {
         LibraryView()
-            .environment(LibraryDataSource(webService: WebService()))
+            .environment(LibraryDataSource())
     }
 }
