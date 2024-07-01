@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import SwiftSoup
 
 @Observable
 class LibraryDataSource {
@@ -139,5 +140,45 @@ extension LibraryDataSource {
         request.predicate = NSPredicate(format: "name == %@", library.name)
         let results = try? context.fetch(request)
         return results?.first
+    }
+}
+
+extension LibraryDataSource {
+    func loadLibraryImageData(for library: Library) async throws -> Data {
+        let storedImageData = getStoredImageData(for: library)
+        if storedImageData.count > 0 {
+            return storedImageData
+        }
+        
+        var imageURLString = ""
+        guard let libraryURLString = library.website?.url else { fatalError("No library URL")}
+        let siteHTML = try await webService.getStringData(for: libraryURLString)
+        let doc = try SwiftSoup.parse(siteHTML)
+        let elements: Elements = try! doc.select("meta")
+        for element in elements {
+            if try element.attr("property") == "og:image" {
+                imageURLString = try element.attr("content")
+            }
+        }
+        
+        let imageData = try await webService.getData(for: imageURLString)
+        saveStoredImageData(imageData, for: library)
+        return imageData
+    }
+    
+    private func getStoredImageData(for library: Library) -> Data {
+        guard let libEntity = libraryEntity(for: library) else { return Data() }
+        return libEntity.photoData ?? Data()
+    }
+    
+    private func saveStoredImageData(_ imageData: Data, for library: Library) {
+        guard let libEntity = libraryEntity(for: library) else { return }
+        let context = CoreDataStack.shared.viewContext
+        libEntity.photoData = imageData
+        do {
+            try context.save()
+        } catch {
+            print("Error saving image to Core Data: \(error.localizedDescription)")
+        }
     }
 }
