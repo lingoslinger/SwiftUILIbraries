@@ -12,24 +12,24 @@ struct LibraryMapView: View {
     let library: Library
     let mapLocation: CLLocationCoordinate2D
     
-    @State private var region: MKCoordinateRegion
+    @State private var mapPosition: MapCameraPosition
     
     init(library: Library) {
         self.library = library
-        let latString = library.location?.lat ?? 0.0
-        let lonString = library.location?.lon ?? 0.0
-        let latitude = Double(latString)
-        let longitude = Double(lonString)
-        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let lat = library.location?.lat ?? 0.0
+        let lon = library.location?.lon ?? 0.0
+        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
         let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
-        _region = State(initialValue: MKCoordinateRegion(center: coordinate, span: span))
-        mapLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let region = MKCoordinateRegion(center: coordinate, span: span)
+        mapLocation = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        mapPosition = MapCameraPosition.region(region)
     }
     
     var body: some View {
-        Map(coordinateRegion: $region, annotationItems: [library]) { item in
-            MapMarker(coordinate: mapLocation) // MapPin is deprecated in iOS 16
-        }
+        Map(position: $mapPosition) {
+            Marker("\(library.name) Library", systemImage: "books.vertical.fill", coordinate: mapLocation)
+        }.tint(.blue)
+        
     }
 }
 

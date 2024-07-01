@@ -55,7 +55,7 @@ enum HTTPMethod {
 
 struct Resource<T: Codable> {
     let url: URL
-    var method: HTTPMethod = .get([])
+    var method: HTTPMethod = .get([]) // default of GET with no query parameters
     var modelType: T.Type
 }
 
@@ -64,7 +64,7 @@ struct WebService {
     
     init() {
         let config = URLSessionConfiguration.default
-        config.httpAdditionalHeaders = ["Content-Type": "application/json"] // JSON for now, may need to update this later
+        config.httpAdditionalHeaders = ["Content-Type": "application/json"] // JSON for now, should make this more flexible in the future
         self.session = URLSession(configuration: config)
     }
     
@@ -104,7 +104,7 @@ struct WebService {
         }
     }
     
-    // simpler methods to get data blob or html (string) data
+    // old methods to get data blob or html (string) data...replace with an upgraded load() function eventually
     func getData(for url: URL) async throws -> Data {
         let (data, response) = try await URLSession.shared.data(from: url)
         guard let httpResponse = response as? HTTPURLResponse else {
