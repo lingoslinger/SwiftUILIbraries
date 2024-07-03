@@ -29,13 +29,10 @@ struct LibraryMapView: View {
         Map(position: $mapPosition) {
             Marker("\(library.name) Library", systemImage: "books.vertical.fill", coordinate: mapLocation)
         }.tint(.blue)
-        
     }
 }
 
 #Preview {
     LibraryMapView(library: previewLibrary)
-//        .environment(LibraryDataSource())
-//        .environment(LocationDataManager())
 }
 

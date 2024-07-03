@@ -25,6 +25,4 @@ struct LibraryPhoneNumberView: View {
 
 #Preview {
     LibraryPhoneNumberView(library: previewLibrary)
-//        .environment(LibraryDataSource())
-//        .environment(LocationDataManager())
 }

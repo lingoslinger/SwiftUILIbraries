@@ -36,6 +36,11 @@ struct LibraryAlphaView: View {
         .searchable(text: $searchText,
                     placement: .navigationBarDrawer(displayMode: .always),
                     prompt: "Search by library name")
+        .overlay {
+            if libraries.isEmpty {
+                ContentUnavailableView.search(text: searchText)
+            }
+        }
         .task {
             do {
                 try await libraryDataSource.getLibraries()
