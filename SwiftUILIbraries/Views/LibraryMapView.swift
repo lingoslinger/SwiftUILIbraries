@@ -33,8 +33,9 @@ struct LibraryMapView: View {
     }
 }
 
-struct LibraryMapView_Previews: PreviewProvider {
-    static var previews: some View {
-        LibraryMapView(library: previewLibrary)
-    }
+#Preview {
+    LibraryMapView(library: previewLibrary)
+//        .environment(LibraryDataSource())
+//        .environment(LocationDataManager())
 }
+

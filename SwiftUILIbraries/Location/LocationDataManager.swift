@@ -18,9 +18,6 @@ final class LocationDataManager: NSObject, CLLocationManagerDelegate {
     override init() {
         super.init()
         locationManager.delegate = self
-        if isAuthorized {
-            locationManager.startUpdatingLocation()
-        }
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -34,22 +31,6 @@ final class LocationDataManager: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        var statusMessage: String = ""
-        switch (locationManager.authorizationStatus) {
-            case .authorizedAlways:
-                statusMessage = "authorized always"
-            case .authorizedWhenInUse:
-                statusMessage = "authorized when in use"
-            case .notDetermined:
-                statusMessage = "not determined"
-            case .denied:
-                statusMessage = "denied"
-            case .restricted:
-                statusMessage = "restricted"
-            default:
-                statusMessage = "unknown status"
-        }
-        print("Authorization status changed to \(statusMessage)")
         if !isAuthorized {
             locationManager.requestWhenInUseAuthorization()
         }

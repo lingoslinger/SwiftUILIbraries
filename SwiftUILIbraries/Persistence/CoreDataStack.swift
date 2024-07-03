@@ -16,7 +16,7 @@ class CoreDataStack {
         let container = NSPersistentContainer(name: "ChiLibsDataModel")
         container.loadPersistentStores { description, error in
             if let error = error as NSError? {
-                fatalError("failed to load persisten stores: \(error), \(error.userInfo)")
+                fatalError("failed to load persistent stores: \(error), \(error.userInfo)")
             }
         }
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy

@@ -47,6 +47,7 @@ struct LibraryDetailView_Previews: PreviewProvider {
         NavigationStack {
             LibraryDetailView(library: previewLibrary)
                 .environment(LibraryDataSource())
+                .environment(LocationDataManager())
         }
     }
 }

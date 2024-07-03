@@ -23,8 +23,8 @@ struct LibraryPhoneNumberView: View {
     }
 }
 
-struct LibraryPhoneNumberView_Previews: PreviewProvider {
-    static var previews: some View {
-        LibraryPhoneNumberView(library: previewLibrary)
-    }
+#Preview {
+    LibraryPhoneNumberView(library: previewLibrary)
+//        .environment(LibraryDataSource())
+//        .environment(LocationDataManager())
 }

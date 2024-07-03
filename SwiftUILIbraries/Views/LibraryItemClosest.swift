@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct LibraryItemDistanceSorted: View {
+struct LibraryItemClosest: View {
     let library: Library
     
     var metric: Bool {
@@ -34,5 +34,7 @@ struct LibraryItemDistanceSorted: View {
 }
 
 #Preview {
-    LibraryItemDistanceSorted(library: previewLibrary)
+    LibraryItemClosest(library: previewLibrary)
+//        .environment(LibraryDataSource())
+//        .environment(LocationDataManager())
 }

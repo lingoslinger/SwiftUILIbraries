@@ -190,28 +190,26 @@ extension LibraryDataSource {
         let sortedLibs: [Library] = libraries.sorted {
             guard let loc1 = $0.location?.loc, let loc2 = $1.location?.loc else { return true }
             return location.distance(from: loc1) < location.distance(from: loc2)}
-        // step 2: get the top ten, get their walking distances, and sort by that just in case
+        // step 2: get the top ten and get their walking distances
         let firstTen = Array(sortedLibs.prefix(10))
         var newLibs: [Library] = []
-        let taskResults = try? await withThrowingTaskGroup(of: Library.self) { group in
+        let taskResults: ()? = try? await withThrowingTaskGroup(of: Library.self) { group in
             for library in firstTen {
                 guard let libLoc = library.location?.loc else { return }
                 group.addTask {
                     var newLib = library
                     let route = await self.walkingDistance(from: location, to: libLoc)
                     newLib.walkingDistance = route?.distance ?? 0.0
-                    print("library \(newLib.name), walking distance is \(newLib.walkingDistance) meters")
+//                    print("library \(newLib.name), walking distance is \(newLib.walkingDistance) meters")
                     return newLib
                 }
             }
-//            var results: [Library] = []
             for try await result in group {
                 newLibs.append(result)
             }
             
             //return results
         }
-//        newLibs.append(contentsOf: taskResults)
         // step 3: update the (published) variable so the UI will update
         tenClosestLibraries = newLibs.sorted {
             $0.walkingDistance < $1.walkingDistance

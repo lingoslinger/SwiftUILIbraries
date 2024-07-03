@@ -20,4 +20,6 @@ struct LibraryItemAlpha: View {
 
 #Preview {
     LibraryItemAlpha(library: previewLibrary)
+//        .environment(LibraryDataSource())
+//        .environment(LocationDataManager())
 }
