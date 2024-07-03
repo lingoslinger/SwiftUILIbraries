@@ -9,6 +9,8 @@
 import Foundation
 import CoreData
 import SwiftSoup
+import CoreLocation
+import MapKit
 
 @Observable
 class LibraryDataSource {
@@ -24,6 +26,7 @@ class LibraryDataSource {
     }
     
     var libraries: [Library] = []
+    var tenClosestLibraries: [Library] = []
     
     func getLibraries() async throws {
         if cacheExpired{ deleteAllLibraries() }
@@ -131,10 +134,8 @@ class LibraryDataSource {
     private func websiteFromEntity(_ libraryEntity: LibraryEntity) -> Website {
         return Website(url: libraryEntity.website?.url)
     }
-}
-
-extension LibraryDataSource {
-    func libraryEntity(for library: Library) -> LibraryEntity? {
+    
+    private func libraryEntity(for library: Library) -> LibraryEntity? {
         let context = CoreDataStack.shared.viewContext
         let request: NSFetchRequest<LibraryEntity> = LibraryEntity.fetchRequest()
         request.predicate = NSPredicate(format: "name == %@", library.name)
@@ -179,6 +180,62 @@ extension LibraryDataSource {
             try context.save()
         } catch {
             print("Error saving image to Core Data: \(error.localizedDescription)")
+        }
+    }
+}
+
+extension LibraryDataSource {
+    func getTenClosestWalkingLibraries(from location: CLLocation) async throws {
+        // step 1: sort libraries by "as the crow flies" distance
+        let sortedLibs: [Library] = libraries.sorted {
+            guard let loc1 = $0.location?.loc, let loc2 = $1.location?.loc else { return true }
+            return location.distance(from: loc1) < location.distance(from: loc2)}
+        // step 2: get the top ten, get their walking distances, and sort by that just in case
+        let firstTen = Array(sortedLibs.prefix(10))
+        var newLibs: [Library] = []
+        let taskResults = try? await withThrowingTaskGroup(of: Library.self) { group in
+            for library in firstTen {
+                guard let libLoc = library.location?.loc else { return }
+                group.addTask {
+                    var newLib = library
+                    let route = await self.walkingDistance(from: location, to: libLoc)
+                    newLib.walkingDistance = route?.distance ?? 0.0
+                    print("library \(newLib.name), walking distance is \(newLib.walkingDistance) meters")
+                    return newLib
+                }
+            }
+//            var results: [Library] = []
+            for try await result in group {
+                newLibs.append(result)
+            }
+            
+            //return results
+        }
+//        newLibs.append(contentsOf: taskResults)
+        // step 3: update the (published) variable so the UI will update
+        tenClosestLibraries = newLibs.sorted {
+            $0.walkingDistance < $1.walkingDistance
+        }
+        print(tenClosestLibraries)
+    }
+    
+    func clearSortedLibraries() {
+        tenClosestLibraries = []
+    }
+        
+    private func walkingDistance(from: CLLocation, to: CLLocation) async -> MKRoute? {
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: MKPlacemark(coordinate: from.coordinate))
+        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: to.coordinate))
+        request.transportType = .walking
+        
+        let directions = MKDirections(request: request)
+        do {
+            let response = try await directions.calculate()
+            return response.routes.first
+        } catch {
+            print("Error calculating route: \(error.localizedDescription)")
+            return nil
         }
     }
 }

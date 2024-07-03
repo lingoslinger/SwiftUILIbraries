@@ -13,7 +13,9 @@ struct SwiftUILIbrariesApp: App {
         WindowGroup {
             NavigationStack {
                 LibraryView()
-            }.environment(LibraryDataSource())
+            }
+            .environment(LibraryDataSource())
+            .environment(LocationDataManager())
         }
     }
 }

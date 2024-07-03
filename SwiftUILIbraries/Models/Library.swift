@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import CoreLocation
 
-struct Library: Codable, Identifiable, Hashable {
+struct Library: Codable, Identifiable { //}, Hashable {
     let address : String?
     let city : String?
     let hoursOfOperation : String?
@@ -22,7 +23,7 @@ struct Library: Codable, Identifiable, Hashable {
     var photoData: Data = Data()
     let id: Int = UUID().hashValue
     
-    // using coding keys here because of some naming issues in the data source
+    // using coding keys here because of some naming issues in the city's data source
     // I'm looking at you, "name_" 🤦‍♂️
     enum CodingKeys: String, CodingKey {
         case address = "address"
@@ -76,6 +77,10 @@ struct Location: Codable {
     }
     var lon: Double {
         Double(longitude ?? "0.0") ?? 0.0
+    }
+    
+    var loc: CLLocation {
+        CLLocation(latitude: lat, longitude: lon)
     }
 }
 

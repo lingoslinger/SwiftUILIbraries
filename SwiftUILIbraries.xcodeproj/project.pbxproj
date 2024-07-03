@@ -27,6 +27,9 @@
 		9D32FDE72C31A7EB00BDD100 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 9D32FDE62C31A7EB00BDD100 /* SwiftSoup */; };
 		9D32FDEC2C32B22B00BDD100 /* ChiLibsDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDE92C32B22B00BDD100 /* ChiLibsDataModel.xcdatamodeld */; };
 		9D32FDED2C32B22B00BDD100 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDEB2C32B22B00BDD100 /* CoreDataStack.swift */; };
+		9D32FDEF2C32EB5000BDD100 /* LibraryItemAlpha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDEE2C32EB5000BDD100 /* LibraryItemAlpha.swift */; };
+		9D32FDF12C32EB9B00BDD100 /* LibraryItemDistanceSorted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDF02C32EB9B00BDD100 /* LibraryItemDistanceSorted.swift */; };
+		9D32FDF42C32FD9D00BDD100 /* LocationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDF32C32FD9D00BDD100 /* LocationDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,10 @@
 		9D32FDE32C31A7AC00BDD100 /* LibraryImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryImageView.swift; sourceTree = "<group>"; };
 		9D32FDEA2C32B22B00BDD100 /* ChiLibsDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChiLibsDataModel.xcdatamodel; sourceTree = "<group>"; };
 		9D32FDEB2C32B22B00BDD100 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		9D32FDEE2C32EB5000BDD100 /* LibraryItemAlpha.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryItemAlpha.swift; sourceTree = "<group>"; };
+		9D32FDF02C32EB9B00BDD100 /* LibraryItemDistanceSorted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryItemDistanceSorted.swift; sourceTree = "<group>"; };
+		9D32FDF32C32FD9D00BDD100 /* LocationDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDataManager.swift; sourceTree = "<group>"; };
+		9D32FDF52C33037300BDD100 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +90,8 @@
 		9D32FDB62C308FD300BDD100 /* SwiftUILIbraries */ = {
 			isa = PBXGroup;
 			children = (
+				9D32FDF52C33037300BDD100 /* Info.plist */,
+				9D32FDF22C32FD9100BDD100 /* Location */,
 				9D32FDE82C32B21E00BDD100 /* Persistence */,
 				9D32FDE02C30ACA200BDD100 /* Extensions */,
 				9D32FDD72C30AA8100BDD100 /* Views */,
@@ -146,6 +155,8 @@
 		9D32FDD72C30AA8100BDD100 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9D32FDEE2C32EB5000BDD100 /* LibraryItemAlpha.swift */,
+				9D32FDF02C32EB9B00BDD100 /* LibraryItemDistanceSorted.swift */,
 				9D32FDE32C31A7AC00BDD100 /* LibraryImageView.swift */,
 				9D32FDD82C30AA8C00BDD100 /* LibraryMapView.swift */,
 				9D32FDDA2C30AAA900BDD100 /* LibraryPhoneNumberView.swift */,
@@ -168,6 +179,14 @@
 				9D32FDEB2C32B22B00BDD100 /* CoreDataStack.swift */,
 			);
 			path = Persistence;
+			sourceTree = "<group>";
+		};
+		9D32FDF22C32FD9100BDD100 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				9D32FDF32C32FD9D00BDD100 /* LocationDataManager.swift */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,11 +270,14 @@
 				9D32FDD12C3090A100BDD100 /* PlistParser.swift in Sources */,
 				9D32FDE42C31A7AC00BDD100 /* LibraryImageView.swift in Sources */,
 				9D32FDBA2C308FD300BDD100 /* LibraryView.swift in Sources */,
+				9D32FDF12C32EB9B00BDD100 /* LibraryItemDistanceSorted.swift in Sources */,
 				9D32FDD92C30AA8C00BDD100 /* LibraryMapView.swift in Sources */,
 				9D32FDCC2C30906400BDD100 /* LibraryDataSource.swift in Sources */,
+				9D32FDEF2C32EB5000BDD100 /* LibraryItemAlpha.swift in Sources */,
 				9D32FDDF2C30AB2500BDD100 /* String+LibraryHourFormatting.swift in Sources */,
 				9D32FDED2C32B22B00BDD100 /* CoreDataStack.swift in Sources */,
 				9D32FDB82C308FD300BDD100 /* SwiftUILIbrariesApp.swift in Sources */,
+				9D32FDF42C32FD9D00BDD100 /* LocationDataManager.swift in Sources */,
 				9D32FDC82C30904C00BDD100 /* Library.swift in Sources */,
 				9D32FDEC2C32B22B00BDD100 /* ChiLibsDataModel.xcdatamodeld in Sources */,
 				9D32FDCE2C30906D00BDD100 /* APIs.swift in Sources */,
@@ -399,11 +421,16 @@
 				DEVELOPMENT_TEAM = W9SQ355FV2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SwiftUILIbraries/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We use your location to find the closest libraries";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to find the closest libraries";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -428,11 +455,16 @@
 				DEVELOPMENT_TEAM = W9SQ355FV2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SwiftUILIbraries/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We use your location to find the closest libraries";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to find the closest libraries";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

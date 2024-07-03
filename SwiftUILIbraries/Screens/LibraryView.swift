@@ -9,6 +9,8 @@ import SwiftUI
 
 struct LibraryView: View {
     @Environment(LibraryDataSource.self) private var libraryDataSource
+    @Environment(LocationDataManager.self) private var locationDataManager
+    @State private var showClosestLibraries = false
     @State private var searchText = ""
     
     var libraries: [Library] {
@@ -24,25 +26,54 @@ struct LibraryView: View {
     
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(sectionTitles, id: \.self) { sectionTitle in
-                    Section(header: Text(sectionTitle)) {
-                        let sectionLibraries = libraries.filter { $0.name.hasPrefix(sectionTitle) }.sorted { $0.name < $1.name }
-                        ForEach(sectionLibraries) { library in
-                            NavigationLink {
-                                LibraryDetailView(library: library)
-                            } label: {
-                                Text(library.name)
+            if showClosestLibraries {
+                
+                List {
+                    Section("10 Closest libraries by walking distance") {
+                        ForEach(libraryDataSource.tenClosestLibraries) { library in
+                            LibraryItemDistanceSorted(library: library)
+                        }
+                    }
+                }
+                .task {
+//                    if locationDataManager.isAuthorized {
+                        do {
+                            try await libraryDataSource.getTenClosestWalkingLibraries(from: locationDataManager.userLocation)
+                        } catch {
+                            print(error)
+                        }
+//                    }
+                }
+            } else {
+                List {
+                    ForEach(sectionTitles, id: \.self) { sectionTitle in
+                        Section(header: Text(sectionTitle)) {
+                            let sectionLibraries = libraries.filter { $0.name.hasPrefix(sectionTitle) }.sorted { $0.name < $1.name }
+                            ForEach(sectionLibraries) { library in
+                                LibraryItemAlpha(library: library)
                             }
                         }
                     }
                 }
+                .searchable(text: $searchText,
+                            placement: .navigationBarDrawer(displayMode: .always),
+                            prompt: "Search by library name")
             }
-            .navigationTitle("Chicago Libraries")
-            .searchable(text: $searchText,
-                        placement: .navigationBarDrawer(displayMode: .always),
-                        prompt: "Search by library name")
         }
+        .navigationTitle("Chicago Libraries")
+        .toolbar(content: {
+            ToolbarItem(placement: .topBarTrailing) {
+                if showClosestLibraries {
+                    Button(action: {
+                        showClosestLibraries.toggle()
+                    }) { Image(systemName: "text.justify") }
+                } else {
+                    Button(action: {
+                        showClosestLibraries.toggle()
+                    }) { Image(systemName: "figure.walk") }
+                }
+            }
+        })
         .task {
             do {
                 try await libraryDataSource.getLibraries()
@@ -57,5 +88,6 @@ struct LibraryView: View {
     NavigationStack {
         LibraryView()
             .environment(LibraryDataSource())
+            .environment(LocationDataManager())
     }
 }
