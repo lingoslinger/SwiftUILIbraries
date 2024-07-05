@@ -19,10 +19,8 @@ struct LibraryMapView: View {
         let lat = library.location?.lat ?? 0.0
         let lon = library.location?.lon ?? 0.0
         let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-        let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
-        let region = MKCoordinateRegion(center: coordinate, span: span)
         mapLocation = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-        mapPosition = MapCameraPosition.region(region)
+        mapPosition = MapCameraPosition.region(MKCoordinateRegion(center: coordinate, latitudinalMeters: 500, longitudinalMeters: 500))
     }
     
     var body: some View {

@@ -27,6 +27,7 @@ class LibraryDataSource {
     
     var libraries: [Library] = []
     var tenClosestLibraries: [Library] = []
+    var tenClosestSearchLibraries: [Library] = []
     
     func getLibraries() async throws {
         if cacheExpired{ deleteAllLibraries() }
@@ -186,35 +187,28 @@ extension LibraryDataSource {
 
 extension LibraryDataSource {
     func getTenClosestWalkingLibraries(from location: CLLocation) async throws {
-        // step 1: sort libraries by "as the crow flies" distance
         let sortedLibs: [Library] = libraries.sorted {
             guard let loc1 = $0.location?.loc, let loc2 = $1.location?.loc else { return true }
             return location.distance(from: loc1) < location.distance(from: loc2)}
-        // step 2: get the top ten and get their walking distances
         let firstTen = Array(sortedLibs.prefix(10))
         var newLibs: [Library] = []
-        let taskResults: ()? = try? await withThrowingTaskGroup(of: Library.self) { group in
+        try await withThrowingTaskGroup(of: Library.self) { group in
             for library in firstTen {
                 guard let libLoc = library.location?.loc else { return }
                 group.addTask {
                     var newLib = library
                     let route = await self.walkingDistance(from: location, to: libLoc)
                     newLib.walkingDistance = route?.distance ?? 0.0
-//                    print("library \(newLib.name), walking distance is \(newLib.walkingDistance) meters")
                     return newLib
                 }
             }
             for try await result in group {
                 newLibs.append(result)
             }
-            
-            //return results
         }
-        // step 3: update the (published) variable so the UI will update
         tenClosestLibraries = newLibs.sorted {
             $0.walkingDistance < $1.walkingDistance
         }
-        print(tenClosestLibraries)
     }
     
     func clearSortedLibraries() {

@@ -36,7 +36,7 @@ final class LocationDataManager: NSObject, CLLocationManagerDelegate {
         }
         if isAuthorized {
             locationManager.startUpdatingLocation()
-        }
+        } 
     }
 }
 
