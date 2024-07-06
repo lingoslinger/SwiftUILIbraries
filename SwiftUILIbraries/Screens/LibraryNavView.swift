@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LibraryView: View {
+struct LibraryNavView: View {
     @State private var showClosestLibraries = false
    
     var body: some View {
@@ -21,15 +21,11 @@ struct LibraryView: View {
         .navigationTitle("Chicago Libraries")
         .toolbar(content: {
             ToolbarItem(placement: .topBarTrailing) {
-                if showClosestLibraries {
-                    Button(action: {
-                        showClosestLibraries.toggle()
-                    }) { Image(systemName: "text.justify") }
-                } else {
-                    Button(action: {
-                        showClosestLibraries.toggle()
-                    }) { Image(systemName: "figure.walk") }
-                }
+                let imageString = showClosestLibraries ? "text.justify" : "figure.walk"
+                Button(action: {
+                    showClosestLibraries.toggle()
+                }) { Image(systemName: imageString) }
+               
             }
         })
     }
@@ -37,7 +33,7 @@ struct LibraryView: View {
 
 #Preview {
     NavigationStack {
-        LibraryView()
+        LibraryNavView()
             .environment(LibraryDataSource())
             .environment(LocationDataManager())
     }

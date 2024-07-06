@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9D32FDB82C308FD300BDD100 /* SwiftUILIbrariesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDB72C308FD300BDD100 /* SwiftUILIbrariesApp.swift */; };
-		9D32FDBA2C308FD300BDD100 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDB92C308FD300BDD100 /* LibraryView.swift */; };
+		9D32FDBA2C308FD300BDD100 /* LibraryNavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDB92C308FD300BDD100 /* LibraryNavView.swift */; };
 		9D32FDBC2C308FD400BDD100 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D32FDBB2C308FD400BDD100 /* Assets.xcassets */; };
 		9D32FDBF2C308FD400BDD100 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D32FDBE2C308FD400BDD100 /* Preview Assets.xcassets */; };
 		9D32FDC82C30904C00BDD100 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDC72C30904C00BDD100 /* Library.swift */; };
@@ -37,7 +37,7 @@
 /* Begin PBXFileReference section */
 		9D32FDB42C308FD300BDD100 /* SwiftUILIbraries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUILIbraries.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D32FDB72C308FD300BDD100 /* SwiftUILIbrariesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUILIbrariesApp.swift; sourceTree = "<group>"; };
-		9D32FDB92C308FD300BDD100 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		9D32FDB92C308FD300BDD100 /* LibraryNavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryNavView.swift; sourceTree = "<group>"; };
 		9D32FDBB2C308FD400BDD100 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D32FDBE2C308FD400BDD100 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9D32FDC72C30904C00BDD100 /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 		9D32FDD22C309B7700BDD100 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				9D32FDB92C308FD300BDD100 /* LibraryView.swift */,
+				9D32FDB92C308FD300BDD100 /* LibraryNavView.swift */,
 				9D32FDDC2C30AABA00BDD100 /* LibraryDetailView.swift */,
 			);
 			path = Screens;
@@ -277,7 +277,7 @@
 				9D32FDD12C3090A100BDD100 /* PlistParser.swift in Sources */,
 				9D32FDE42C31A7AC00BDD100 /* LibraryImageView.swift in Sources */,
 				9DA707082C356E4E002A6FDC /* LibraryAlphaView.swift in Sources */,
-				9D32FDBA2C308FD300BDD100 /* LibraryView.swift in Sources */,
+				9D32FDBA2C308FD300BDD100 /* LibraryNavView.swift in Sources */,
 				9D32FDF12C32EB9B00BDD100 /* LibraryItemClosest.swift in Sources */,
 				9D32FDD92C30AA8C00BDD100 /* LibraryMapView.swift in Sources */,
 				9D32FDCC2C30906400BDD100 /* LibraryDataSource.swift in Sources */,

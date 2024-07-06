@@ -12,7 +12,7 @@ struct SwiftUILIbrariesApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                LibraryView()
+                LibraryNavView()
             }
             .environment(LibraryDataSource())
             .environment(LocationDataManager())
