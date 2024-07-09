@@ -25,11 +25,11 @@
 		9D32FDE22C30F08200BDD100 /* MapUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDE12C30F08200BDD100 /* MapUtilities.swift */; };
 		9D32FDE42C31A7AC00BDD100 /* LibraryImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDE32C31A7AC00BDD100 /* LibraryImageView.swift */; };
 		9D32FDE72C31A7EB00BDD100 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 9D32FDE62C31A7EB00BDD100 /* SwiftSoup */; };
-		9D32FDEC2C32B22B00BDD100 /* ChiLibsDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDE92C32B22B00BDD100 /* ChiLibsDataModel.xcdatamodeld */; };
 		9D32FDED2C32B22B00BDD100 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDEB2C32B22B00BDD100 /* CoreDataStack.swift */; };
 		9D32FDEF2C32EB5000BDD100 /* LibraryItemAlpha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDEE2C32EB5000BDD100 /* LibraryItemAlpha.swift */; };
 		9D32FDF12C32EB9B00BDD100 /* LibraryItemClosest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDF02C32EB9B00BDD100 /* LibraryItemClosest.swift */; };
 		9D32FDF42C32FD9D00BDD100 /* LocationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDF32C32FD9D00BDD100 /* LocationDataManager.swift */; };
+		9D4DA67A2C3D6DB8006C4760 /* ChiLibsDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D4DA6782C3D6DB8006C4760 /* ChiLibsDataModel.xcdatamodeld */; };
 		9DA707082C356E4E002A6FDC /* LibraryAlphaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA707072C356E4E002A6FDC /* LibraryAlphaView.swift */; };
 		9DA7070A2C356F4E002A6FDC /* LibraryClosestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA707092C356F4E002A6FDC /* LibraryClosestView.swift */; };
 /* End PBXBuildFile section */
@@ -53,12 +53,12 @@
 		9D32FDDE2C30AB2500BDD100 /* String+LibraryHourFormatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+LibraryHourFormatting.swift"; sourceTree = "<group>"; };
 		9D32FDE12C30F08200BDD100 /* MapUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapUtilities.swift; sourceTree = "<group>"; };
 		9D32FDE32C31A7AC00BDD100 /* LibraryImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryImageView.swift; sourceTree = "<group>"; };
-		9D32FDEA2C32B22B00BDD100 /* ChiLibsDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChiLibsDataModel.xcdatamodel; sourceTree = "<group>"; };
 		9D32FDEB2C32B22B00BDD100 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		9D32FDEE2C32EB5000BDD100 /* LibraryItemAlpha.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryItemAlpha.swift; sourceTree = "<group>"; };
 		9D32FDF02C32EB9B00BDD100 /* LibraryItemClosest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryItemClosest.swift; sourceTree = "<group>"; };
 		9D32FDF32C32FD9D00BDD100 /* LocationDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDataManager.swift; sourceTree = "<group>"; };
 		9D32FDF52C33037300BDD100 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9D4DA6792C3D6DB8006C4760 /* ChiLibsDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChiLibsDataModel.xcdatamodel; sourceTree = "<group>"; };
 		9DA707072C356E4E002A6FDC /* LibraryAlphaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryAlphaView.swift; sourceTree = "<group>"; };
 		9DA707092C356F4E002A6FDC /* LibraryClosestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryClosestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,7 +181,7 @@
 		9D32FDE82C32B21E00BDD100 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				9D32FDE92C32B22B00BDD100 /* ChiLibsDataModel.xcdatamodeld */,
+				9D4DA6782C3D6DB8006C4760 /* ChiLibsDataModel.xcdatamodeld */,
 				9D32FDEB2C32B22B00BDD100 /* CoreDataStack.swift */,
 			);
 			path = Persistence;
@@ -276,6 +276,7 @@
 				9D32FDD62C30A88500BDD100 /* PreviewData.swift in Sources */,
 				9D32FDD12C3090A100BDD100 /* PlistParser.swift in Sources */,
 				9D32FDE42C31A7AC00BDD100 /* LibraryImageView.swift in Sources */,
+				9D4DA67A2C3D6DB8006C4760 /* ChiLibsDataModel.xcdatamodeld in Sources */,
 				9DA707082C356E4E002A6FDC /* LibraryAlphaView.swift in Sources */,
 				9D32FDBA2C308FD300BDD100 /* LibraryNavView.swift in Sources */,
 				9D32FDF12C32EB9B00BDD100 /* LibraryItemClosest.swift in Sources */,
@@ -287,7 +288,6 @@
 				9D32FDB82C308FD300BDD100 /* SwiftUILIbrariesApp.swift in Sources */,
 				9D32FDF42C32FD9D00BDD100 /* LocationDataManager.swift in Sources */,
 				9D32FDC82C30904C00BDD100 /* Library.swift in Sources */,
-				9D32FDEC2C32B22B00BDD100 /* ChiLibsDataModel.xcdatamodeld in Sources */,
 				9D32FDCE2C30906D00BDD100 /* APIs.swift in Sources */,
 				9D32FDE22C30F08200BDD100 /* MapUtilities.swift in Sources */,
 				9D32FDDD2C30AABA00BDD100 /* LibraryDetailView.swift in Sources */,
@@ -529,14 +529,14 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		9D32FDE92C32B22B00BDD100 /* ChiLibsDataModel.xcdatamodeld */ = {
+		9D4DA6782C3D6DB8006C4760 /* ChiLibsDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				9D32FDEA2C32B22B00BDD100 /* ChiLibsDataModel.xcdatamodel */,
+				9D4DA6792C3D6DB8006C4760 /* ChiLibsDataModel.xcdatamodel */,
 			);
-			currentVersion = 9D32FDEA2C32B22B00BDD100 /* ChiLibsDataModel.xcdatamodel */;
+			currentVersion = 9D4DA6792C3D6DB8006C4760 /* ChiLibsDataModel.xcdatamodel */;
 			name = ChiLibsDataModel.xcdatamodeld;
-			path = /Users/allan/SwiftUILIbraries/SwiftUILIbraries/Persistence/ChiLibsDataModel.xcdatamodeld;
+			path = /Users/allan/repos/SwiftUILIbraries/SwiftUILIbraries/Persistence/ChiLibsDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
