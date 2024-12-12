@@ -19,7 +19,7 @@ struct LibraryDetailView: View {
                         .padding(.leading, 10)
                     LibraryPhoneNumberView(library: library)
                         .padding(.leading, 10)
-                    Text(library.hoursOfOperation?.formattedHours ?? "Hours not available")
+                    Text(library.serviceHours?.formattedHours ?? "Hours not available")
                         .padding(.leading, 10)
                    
                     LibraryMapView(library: library)
@@ -38,7 +38,7 @@ struct LibraryDetailView: View {
                 .padding(.bottom, 10)
             }
         }
-        .navigationTitle(library.name)
+        .navigationTitle(library.branch)
     }
 }
 

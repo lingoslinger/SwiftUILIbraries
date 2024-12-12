@@ -13,7 +13,7 @@ struct LibraryItemAlpha: View {
     
     var body: some View {
         NavigationLink(destination: LibraryDetailView(library: library)) {
-            Text(library.name)
+            Text(library.branch)
         }
     }
 }

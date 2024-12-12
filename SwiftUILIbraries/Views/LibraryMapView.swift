@@ -25,7 +25,7 @@ struct LibraryMapView: View {
     
     var body: some View {
         Map(position: $mapPosition) {
-            Marker("\(library.name)", systemImage: "books.vertical.fill", coordinate: mapLocation)
+            Marker("\(library.branch)", systemImage: "books.vertical.fill", coordinate: mapLocation)
         }.tint(.blue)
     }
 }

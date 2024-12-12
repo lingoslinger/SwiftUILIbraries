@@ -13,12 +13,12 @@ struct LibraryAlphaView: View {
     
     var libraries: [Library] {
         libraryDataSource.libraries.filter {
-            searchText.count == 0 ? true : $0.name.lowercased().contains(searchText.lowercased())
+            searchText.count == 0 ? true : $0.branch.lowercased().contains(searchText.lowercased())
         }
     }
     
     var sectionTitles: [String] {
-        let firstLetters = libraries.map { $0.name.prefix(1) }
+        let firstLetters = libraries.map { $0.branch.prefix(1) }
         return Array(Set(firstLetters)).map { String($0) }.sorted()
     }
     
@@ -26,26 +26,11 @@ struct LibraryAlphaView: View {
         List {
             ForEach(sectionTitles, id: \.self) { sectionTitle in
                 Section(header: Text(sectionTitle)) {
-                    let sectionLibraries = libraries.filter { $0.name.hasPrefix(sectionTitle) }.sorted { $0.name < $1.name }
+                    let sectionLibraries = libraries.filter { $0.branch.hasPrefix(sectionTitle) }.sorted { $0.branch < $1.branch }
                     ForEach(sectionLibraries) { library in
                         LibraryItemAlpha(library: library)
                     }
                 }
-            }
-        }
-        .searchable(text: $searchText,
-                    placement: .navigationBarDrawer(displayMode: .always),
-                    prompt: "Search by library name")
-        .overlay {
-            if libraries.isEmpty {
-                ContentUnavailableView.search(text: searchText)
-            }
-        }
-        .task {
-            do {
-                try await libraryDataSource.getLibraries()
-            } catch {
-                print(error)
             }
         }
     }
