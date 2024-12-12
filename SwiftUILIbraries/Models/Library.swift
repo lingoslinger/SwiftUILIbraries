@@ -12,9 +12,9 @@ import CoreLocation
 struct Library: Codable, Identifiable { //}, Hashable {
     let address : String?
     let city : String?
-    let hoursOfOperation : String?
+    let serviceHours : String?
     let location : Location?
-    let name : String
+    let branch : String
     let phone : String?
     let state : String?
     let website : Website?
@@ -28,9 +28,9 @@ struct Library: Codable, Identifiable { //}, Hashable {
     enum CodingKeys: String, CodingKey {
         case address = "address"
         case city = "city"
-        case hoursOfOperation = "hours_of_operation"
+        case serviceHours = "service_hours"
         case location = "location"
-        case name = "name_"
+        case branch = "branch_"
         case phone = "phone"
         case state = "state"
         case website = "website"
@@ -41,9 +41,9 @@ struct Library: Codable, Identifiable { //}, Hashable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         address = try values.decodeIfPresent(String.self, forKey: .address)
         city = try values.decodeIfPresent(String.self, forKey: .city)
-        hoursOfOperation = try values.decodeIfPresent(String.self, forKey: .hoursOfOperation)
+        serviceHours = try values.decodeIfPresent(String.self, forKey: .serviceHours)
         location = try values.decodeIfPresent(Location.self, forKey: .location)
-        name = try values.decodeIfPresent(String.self, forKey: .name) ?? ""
+        branch = try values.decodeIfPresent(String.self, forKey: .branch) ?? ""
         phone = try values.decodeIfPresent(String.self, forKey: .phone)
         state = try values.decodeIfPresent(String.self, forKey: .state)
         website = try values.decodeIfPresent(Website.self, forKey: .website)
@@ -51,12 +51,12 @@ struct Library: Codable, Identifiable { //}, Hashable {
     }
     
     // need this for caching with Core Data
-    init(address: String, city: String, hoursOfOperation: String, location: Location, name: String, phone: String, state: String, website: Website, zip: String, walkingDistance: Double, photoData: Data) {
+    init(address: String, city: String, serviceHours: String, location: Location, branch: String, phone: String, state: String, website: Website, zip: String, walkingDistance: Double, photoData: Data) {
         self.address = address
         self.city = city
-        self.hoursOfOperation = hoursOfOperation
+        self.serviceHours = serviceHours
         self.location = location
-        self.name = name
+        self.branch = branch
         self.phone = phone
         self.state = state
         self.website = website

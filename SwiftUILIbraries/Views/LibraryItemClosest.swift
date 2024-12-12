@@ -28,7 +28,7 @@ struct LibraryItemClosest: View {
     
     var body: some View {
         NavigationLink(destination: LibraryDetailView(library: library)) {
-            Text("\(library.name)\n\(formattedDistance)")
+            Text("\(library.branch)\n\(formattedDistance)")
         }
     }
 }

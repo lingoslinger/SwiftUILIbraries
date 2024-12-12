@@ -86,9 +86,9 @@ class LibraryDataSource {
     private func mapModelToEntity(from library: Library, to libraryEntity: LibraryEntity) {
         libraryEntity.address = library.address
         libraryEntity.city = library.city
-        libraryEntity.hoursOfOperation = library.hoursOfOperation
+        libraryEntity.serviceHours = library.serviceHours
         libraryEntity.location = locationToEntity(library.location ?? Location(latitude: "0.0", longitude: "0.0", needsRecoding: false))
-        libraryEntity.name = library.name
+        libraryEntity.branch = library.branch
         libraryEntity.phone = library.phone
         libraryEntity.state = library.state
         libraryEntity.website = websiteToEntity(library.website ?? Website(url: ""))
@@ -114,9 +114,9 @@ class LibraryDataSource {
     private func mapEntityToModel(_ libraryEntity: LibraryEntity) -> Library {
         return Library(address: libraryEntity.address ?? "",
                        city: libraryEntity.city ?? "",
-                       hoursOfOperation: libraryEntity.hoursOfOperation ?? "",
+                       serviceHours: libraryEntity.serviceHours ?? "",
                        location: locationFromEntity(libraryEntity),
-                       name: libraryEntity.name ?? "",
+                       branch: libraryEntity.branch ?? "",
                        phone: libraryEntity.phone ?? "",
                        state: libraryEntity.state ?? "",
                        website: websiteFromEntity(libraryEntity),
@@ -139,7 +139,7 @@ class LibraryDataSource {
     private func libraryEntity(for library: Library) -> LibraryEntity? {
         let context = CoreDataStack.shared.viewContext
         let request: NSFetchRequest<LibraryEntity> = LibraryEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "name == %@", library.name)
+        request.predicate = NSPredicate(format: "branch == %@", library.branch)
         let results = try? context.fetch(request)
         return results?.first
     }
