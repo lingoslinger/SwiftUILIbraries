@@ -29,6 +29,7 @@
 		9D32FDEF2C32EB5000BDD100 /* LibraryItemAlpha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDEE2C32EB5000BDD100 /* LibraryItemAlpha.swift */; };
 		9D32FDF12C32EB9B00BDD100 /* LibraryItemClosest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDF02C32EB9B00BDD100 /* LibraryItemClosest.swift */; };
 		9D32FDF42C32FD9D00BDD100 /* LocationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D32FDF32C32FD9D00BDD100 /* LocationDataManager.swift */; };
+		9D4836D82E5E96A70043D1EB /* Locations.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9D4836D72E5E96A70043D1EB /* Locations.txt */; };
 		9D4DA67A2C3D6DB8006C4760 /* ChiLibsDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D4DA6782C3D6DB8006C4760 /* ChiLibsDataModel.xcdatamodeld */; };
 		9DA707082C356E4E002A6FDC /* LibraryAlphaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA707072C356E4E002A6FDC /* LibraryAlphaView.swift */; };
 		9DA7070A2C356F4E002A6FDC /* LibraryClosestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA707092C356F4E002A6FDC /* LibraryClosestView.swift */; };
@@ -58,6 +59,7 @@
 		9D32FDF02C32EB9B00BDD100 /* LibraryItemClosest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryItemClosest.swift; sourceTree = "<group>"; };
 		9D32FDF32C32FD9D00BDD100 /* LocationDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDataManager.swift; sourceTree = "<group>"; };
 		9D32FDF52C33037300BDD100 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9D4836D72E5E96A70043D1EB /* Locations.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Locations.txt; sourceTree = "<group>"; };
 		9D4DA6792C3D6DB8006C4760 /* ChiLibsDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChiLibsDataModel.xcdatamodel; sourceTree = "<group>"; };
 		9DA707072C356E4E002A6FDC /* LibraryAlphaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryAlphaView.swift; sourceTree = "<group>"; };
 		9DA707092C356F4E002A6FDC /* LibraryClosestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryClosestView.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				9D32FDD32C309DE400BDD100 /* Webservice.plist */,
 				9D32FDBB2C308FD400BDD100 /* Assets.xcassets */,
 				9D32FDBD2C308FD400BDD100 /* Preview Content */,
+				9D4836D72E5E96A70043D1EB /* Locations.txt */,
 			);
 			path = SwiftUILIbraries;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				9D32FDBF2C308FD400BDD100 /* Preview Assets.xcassets in Resources */,
 				9D32FDD42C309DE400BDD100 /* Webservice.plist in Resources */,
 				9D32FDBC2C308FD400BDD100 /* Assets.xcassets in Resources */,
+				9D4836D82E5E96A70043D1EB /* Locations.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,7 +21,10 @@ func openAppleMaps(for library: Library) {
     
     var mapItems: [MKMapItem] = []
     
-    mapItems.append(MKMapItem(placemark: MKPlacemark(coordinate: libLoc.coordinate)))
+    let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: libLoc.coordinate))
+    mapItem.name = library.branch + " Library"
+    
+    mapItems.append(mapItem)
     let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking]
     MKMapItem.openMaps(with: mapItems, launchOptions: launchOptions)
 }
